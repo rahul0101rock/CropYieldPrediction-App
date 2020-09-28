@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="rahulch.crop_predict.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Please enter the following details"
+        android:textSize="20dp"
+        android:textColor="#121212" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State - "
+            android:textSize="20dp"/>
+
+        <Spinner
+            android:id="@+id/spstate"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:entries="@array/india_states" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City - "
+            android:textSize="20dp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/actCity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:maxLines="1" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Season -"
+                android:textSize="20dp"/>
+
+            <Spinner
+                android:id="@+id/spsea"
+                android:layout_width="match_parent"
+                android:layout_height="71dp"
+                android:entries="@array/season_arrays"
+                android:prompt="@string/season_prompt" />
+        </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\n" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Submit" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,23 @@
+<resources>
+
+    <string name="app_name">Crop Yield Prediction</string>
+
+    <string name="season_prompt">Choose a Season -</string>
+
+    <string-array name="season_arrays">
+
+        <item>Whole Year</item>
+
+        <item>Kharif</item>
+
+        <item>Rabi</item>
+
+        <item>Summer</item>
+
+        <item>Winter</item>
+
+        <item>Autumn</item>
+    </string-array>
+
+
+</resources>
