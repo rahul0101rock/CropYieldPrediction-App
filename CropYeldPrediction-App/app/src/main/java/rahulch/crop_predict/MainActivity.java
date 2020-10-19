@@ -30,6 +30,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
@@ -73,7 +75,13 @@ public class MainActivity extends AppCompatActivity
                 //startActivity(intent);
                 WebView webView = new WebView(getApplicationContext());
                 webView.loadUrl(url);
-                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").into(imageView);
+                //Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").into(imageView);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
             }
