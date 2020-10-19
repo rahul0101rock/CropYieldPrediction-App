@@ -1,6 +1,7 @@
 package rahulch.crop_predict;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -73,12 +74,14 @@ public class MainActivity extends AppCompatActivity
                 //startActivity(intent);
                 WebView webView = new WebView(getApplicationContext());
                 webView.loadUrl(url);
-
-                //Picasso.get().load("http://predictcrop.pythonanywhere.com/static/white.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Loading...",
+                        true);
+                dialog.show();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                    dialog.dismiss();
                     }
                 }, 600);
 
