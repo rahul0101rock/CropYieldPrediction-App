@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,13 +30,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.squareup.picasso.Picasso;
+
 public class MainActivity extends AppCompatActivity
 {
     // array lists
     // for the spinner in the format : City_no : City , State. Eg : 144 : New Delhi , India
     ArrayList<String> listSpinner=new ArrayList<String>();
-    // to store the city and state in the format : City , State. Eg: New Delhi , India
-    ArrayList<String> listAll=new ArrayList<String>();
     // for listing all states
     ArrayList<String> listState=new ArrayList<String>();
     // for listing all cities
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
     EditText statein;
     EditText cityin;
-
+    ImageView imageView;
     Button submitButton;
     private WebView webView;
     @Override
@@ -55,20 +56,24 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         callAll();
-        final Spinner statesp = (Spinner) findViewById(R.id.spstate);
+        //final Spinner statesp = (Spinner) findViewById(R.id.spstate);
         cityin = (EditText) findViewById(R.id.actCity);
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
         submitButton = (Button) findViewById(R.id.submitButton);
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                state = statesp.getSelectedItem().toString();
+                //state = statesp.getSelectedItem().toString();
                 city = cityin.getText().toString();
                 season = seasonsp.getSelectedItem().toString();
                 url = "http://predictcrop.pythonanywhere.com/plot/?inp=" + city + "@" + season;
-                Intent intent =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                //Intent intent =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                //startActivity(intent);
+                WebView webView = new WebView(getApplicationContext());
+                webView.loadUrl(url);
+                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").into(imageView);
                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
             }
