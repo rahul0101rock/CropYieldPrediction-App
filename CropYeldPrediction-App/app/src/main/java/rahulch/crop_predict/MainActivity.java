@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
         submitButton = (Button) findViewById(R.id.submitButton);
         final ImageView imageView = (ImageView) findViewById(R.id.imageView);
-
+        final Handler handler = new Handler(Looper.getMainLooper());
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,13 +77,15 @@ public class MainActivity extends AppCompatActivity
                 //startActivity(intent);
                 WebView webView = new WebView(getApplicationContext());
                 webView.loadUrl(url);
-                //Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").into(imageView);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+
+                //Picasso.get().load("http://predictcrop.pythonanywhere.com/static/white.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                    }
+                }, 500);
+
                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
             }
