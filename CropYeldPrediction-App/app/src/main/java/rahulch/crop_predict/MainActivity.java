@@ -38,11 +38,6 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
 {
-    // array lists
-    // for the spinner in the format : City_no : City , State. Eg : 144 : New Delhi , India
-    ArrayList<String> listSpinner=new ArrayList<String>();
-    // for listing all states
-    ArrayList<String> listState=new ArrayList<String>();
     // for listing all cities
     ArrayList<String> listCity=new ArrayList<String>();
     // access all auto complete text views
@@ -59,7 +54,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        callAll();
+        obj_list();
+        addCity();
         //final Spinner statesp = (Spinner) findViewById(R.id.spstate);
         cityin = (EditText) findViewById(R.id.actCity);
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity
                     public void run() {
                         Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
                     }
-                }, 500);
+                }, 600);
 
                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
@@ -92,14 +88,6 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
-
-
-    public void callAll()
-    {
-        obj_list();
-        addCity();
-    }
-
     // Get the content of cities.json from assets directory and store it as string
     public String getJson()
     {
@@ -107,7 +95,7 @@ public class MainActivity extends AppCompatActivity
         try
         {
             // Opening cities.json file
-            InputStream is = getAssets().open("cities.json");
+            InputStream is = getAssets().open("city.json");
             // is there any content in the file
             int size = is.available();
             byte[] buffer = new byte[size];
@@ -141,12 +129,10 @@ public class MainActivity extends AppCompatActivity
             {
                 // select the particular JSON data
                 JSONObject object=array.getJSONObject(i);
-                String city=object.getString("name");
-                String state=object.getString("state");
+                String city=object.getString("city");
+                //String state=object.getString("state");
                 // add to the lists in the specified format
-                listSpinner.add(state);
                 listCity.add(city);
-                listState.add(state);
             }
         }
         catch (JSONException e)
