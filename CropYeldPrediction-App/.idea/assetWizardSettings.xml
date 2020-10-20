@@ -81,9 +81,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\rahul\Desktop\APPS\CropYeldPrediction-App\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png" />
-                                                <entry key="scalingPercent" value="130" />
-                                                <entry key="trimmed" value="true" />
+                                                <entry key="imagePath" value="C:\Users\rahul\Desktop\Project\icon.png" />
+                                                <entry key="scalingPercent" value="71" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -116,8 +115,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="f9fbff" />
-                                      <entry key="previewDensity" value="HIGH" />
+                                      <entry key="backgroundColor" value="fffdfc" />
+                                      <entry key="previewDensity" value="XXXHIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -285,7 +284,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="previewDensity" value="HIGH" />
+                                      <entry key="previewDensity" value="XXXHIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>
