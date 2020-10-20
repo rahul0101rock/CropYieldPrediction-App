@@ -43,12 +43,9 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> listCity=new ArrayList<String>();
     // access all auto complete text views
     AutoCompleteTextView act;
-
-    String state, city,season,url;
-
-    EditText statein;
+    String city,season,url;
+    boolean ischange = false;
     EditText cityin;
-    ImageView imageView;
     Button submitButton;
     private WebView webView;
     @Override
@@ -61,11 +58,13 @@ public class MainActivity extends AppCompatActivity
         cityin = (EditText) findViewById(R.id.actCity);
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
         submitButton = (Button) findViewById(R.id.submitButton);
-        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
         final Handler handler = new Handler(Looper.getMainLooper());
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setContentView(R.layout.show);
+                final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+                ischange=true;
                 //state = statesp.getSelectedItem().toString();
                 city = cityin.getText().toString();
                 season = seasonsp.getSelectedItem().toString();
@@ -81,12 +80,11 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run() {
                         Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
-                    dialog.dismiss();
+                        dialog.dismiss();
                     }
-                }, 600);
+                }, 800);
 
                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -181,5 +179,16 @@ public class MainActivity extends AppCompatActivity
             }
          });
     }
-}
 
+    @Override
+    public void onBackPressed() {
+        if (ischange){
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+        }else {
+            finishAffinity();
+        }
+
+    }
+
+}

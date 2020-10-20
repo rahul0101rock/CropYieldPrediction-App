@@ -51,7 +51,7 @@
             <Spinner
                 android:id="@+id/spsea"
                 android:layout_width="match_parent"
-                android:layout_height="63dp"
+                android:layout_height="75dp"
                 android:entries="@array/season_arrays"
                 android:prompt="@string/season_prompt" />
         </LinearLayout>
@@ -63,17 +63,19 @@
             android:layout_height="1dp"
             android:text="\n" />
 
-        <Button
-            android:id="@+id/submitButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Submit" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Submit" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon"
+        />
+
 </LinearLayout>
