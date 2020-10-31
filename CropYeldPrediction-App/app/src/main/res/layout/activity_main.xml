@@ -24,7 +24,8 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/parent">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,35 +38,34 @@
             android:layout_height="wrap_content"
             android:maxLines="1" />
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Area In Hectares - "
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Season -"
-                android:textSize="20dp"/>
-
-            <Spinner
-                android:id="@+id/spsea"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:entries="@array/season_arrays"
-                android:prompt="@string/season_prompt" />
-        </LinearLayout>
-
+            android:ems="10"
+            android:inputType="number" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Season -"
+            android:textSize="20dp"/>
+
+
+        <Spinner
+            android:id="@+id/spsea"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:text="\n" />
+            android:layout_height="49dp"
+            android:entries="@array/season_arrays"
+            android:prompt="@string/season_prompt" />
 
-    </LinearLayout>
-
-    <Button
+        <Button
         android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -77,5 +77,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/icon"
         />
+    </LinearLayout>
 
 </LinearLayout>

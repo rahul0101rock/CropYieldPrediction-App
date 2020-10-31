@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> listCity=new ArrayList<String>();
     // access all auto complete text views
     AutoCompleteTextView act;
-    String city,season,url;
+    String city;
+    String season;
+    String url;
+    String area;
+    EditText areain;
     boolean ischange = false;
     EditText cityin;
     Button submitButton;
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         addCity();
         //final Spinner statesp = (Spinner) findViewById(R.id.spstate);
         cityin = (EditText) findViewById(R.id.actCity);
+        areain = (EditText) findViewById(R.id.area);
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
         submitButton = (Button) findViewById(R.id.submitButton);
         final Handler handler = new Handler(Looper.getMainLooper());
@@ -67,8 +72,9 @@ public class MainActivity extends AppCompatActivity
                 ischange=true;
                 //state = statesp.getSelectedItem().toString();
                 city = cityin.getText().toString();
+                area = areain.getText().toString();
                 season = seasonsp.getSelectedItem().toString();
-                url = "http://predictcrop.pythonanywhere.com/plot/?inp=" + city + "@" + season;
+                url = "http://predictcrop.pythonanywhere.com/plot/?inp=" + city + "@" + season+ "@" + area;
                 //Intent intent =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 //startActivity(intent);
                 WebView webView = new WebView(getApplicationContext());
@@ -89,6 +95,8 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
+
+
     // Get the content of cities.json from assets directory and store it as string
     public String getJson()
     {
