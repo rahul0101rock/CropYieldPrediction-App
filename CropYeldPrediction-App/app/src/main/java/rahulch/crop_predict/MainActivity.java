@@ -3,14 +3,12 @@ package rahulch.crop_predict;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebSettings;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -18,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -27,11 +26,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -50,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     EditText areain;
     boolean ischange = false;
     EditText cityin;
+    TextView seasontext;
     Button submitButton;
     private WebView webView;
     @Override
@@ -61,36 +57,60 @@ public class MainActivity extends AppCompatActivity
         //final Spinner statesp = (Spinner) findViewById(R.id.spstate);
         cityin = (EditText) findViewById(R.id.actCity);
         areain = (EditText) findViewById(R.id.area);
+        seasontext= (TextView) findViewById(R.id.seatext);
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
         submitButton = (Button) findViewById(R.id.submitButton);
         final Handler handler = new Handler(Looper.getMainLooper());
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.show);
-                final ImageView imageView = (ImageView) findViewById(R.id.imageView);
-                ischange=true;
+
                 //state = statesp.getSelectedItem().toString();
                 city = cityin.getText().toString();
                 area = areain.getText().toString();
                 season = seasonsp.getSelectedItem().toString();
-                url = "http://predictcrop.pythonanywhere.com/plot/?inp=" + city + "@" + season+ "@" + area;
-                //Intent intent =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                //startActivity(intent);
-                WebView webView = new WebView(getApplicationContext());
-                webView.loadUrl(url);
-                final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Loading...",
-                        true);
-                dialog.show();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
-                        dialog.dismiss();
+                if(city.length()==0)
+                {
+                    cityin.requestFocus();
+                    cityin.setError("FIELD CANNOT BE EMPTY");
+                }
+                if(area.length()==0)
+                {
+                    areain.requestFocus();
+                    areain.setError("FIELD CANNOT BE EMPTY");
+                }
+                if(season.equals("- - - Select Season - - -"))
+                {
+                    seasontext.requestFocus();
+                    seasontext.setError("");
+                }
+                else {
+                    if (listCity.contains(city)) {
+                        setContentView(R.layout.show);
+                        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+                        ischange = true;
+                        url = "http://predictcrop.pythonanywhere.com/plot/?inp=" + city + "@" + season + "@" + area;
+                        //Intent intent =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        //startActivity(intent);
+                        WebView webView = new WebView(getApplicationContext());
+                        webView.loadUrl(url);
+                        final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Loading...",
+                                true);
+                        dialog.show();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                                dialog.dismiss();
+                            }
+                        }, 800);
                     }
-                }, 800);
-
-                //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                    else {
+                        cityin.requestFocus();
+                        cityin.setError("ENTER A VALID CITY");
+                    }
+                }
+                //Toast.makeText(getApplicationContext(), season, Toast.LENGTH_LONG).show();
             }
         });
 

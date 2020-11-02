@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City - "
+            android:text="Enter The City - "
             android:textSize="20dp"/>
 
         <AutoCompleteTextView
@@ -41,7 +41,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Area In Hectares - "
+            android:text="Enter Area In Hectares - "
             android:textSize="20dp"/>
 
         <EditText
@@ -54,14 +54,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Season -"
-            android:textSize="20dp"/>
+            android:focusable="true"
+            android:text="Choose a Season -    "
+            android:textSize="20dp"
+            android:id="@+id/seatext"/>
 
 
         <Spinner
             android:id="@+id/spsea"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="58dp"
             android:entries="@array/season_arrays"
             android:prompt="@string/season_prompt" />
 

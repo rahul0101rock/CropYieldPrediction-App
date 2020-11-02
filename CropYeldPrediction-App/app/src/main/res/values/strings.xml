@@ -2,9 +2,10 @@
 
     <string name="app_name">Crop Yield Prediction</string>
 
-    <string name="season_prompt">Choose a Season -</string>
+    <string name="season_prompt">Choose a Season -  </string>
 
     <string-array name="season_arrays">
+        <item>- - - Select Season - - -</item>
 
         <item>Whole Year</item>
 
