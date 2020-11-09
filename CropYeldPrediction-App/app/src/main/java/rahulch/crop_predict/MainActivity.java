@@ -3,6 +3,7 @@ package rahulch.crop_predict;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -104,10 +105,11 @@ public class MainActivity extends AppCompatActivity
                         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Loading...",
                                 true);
                         dialog.show();
+
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
+                                Picasso.get().load("http://predictcrop.pythonanywhere.com/static/plot.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).placeholder( R.drawable.loading_animation ).into(imageView);
                                 dialog.dismiss();
                             }
                         }, 800);
