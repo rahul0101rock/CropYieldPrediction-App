@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
                         setContentView(R.layout.show);
                         final ImageView imageView = (ImageView) findViewById(R.id.imageView);
                         final TextView note= (TextView) findViewById(R.id.note);
-                        String  notetext="Note:\n1)The production graph shown is predicted production of the city: "+city+" in season: "+season+"\n2)We have used Random Forest Regression for better prediction\n3)This prediction is based on historical production and rainfall data\n4)Datasets used are authorized and provided by Ministry of Agriculture and Farmers Welfare, Department of Agriculture, Cooperation and Farmers Welfare and Directorate of Economics and Statistics (DES) available on data.gov.in";
+                        String  notetext="Note:\n1)The production graph shown is predicted production of the city: "+city+" in season: "+season+"\n2)The predicted graph consist top 5 crop on the basis of production\n3)This prediction is based on historical production and rainfall data\n4)Datasets used are authorized and provided by Ministry of Agriculture and Farmers Welfare, Department of Agriculture, Cooperation and Farmers Welfare and Directorate of Economics and Statistics (DES) available on data.gov.in";
                         note.setText(notetext);
                         ischange = true;
 
