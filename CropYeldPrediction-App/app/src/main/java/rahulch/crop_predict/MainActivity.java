@@ -22,6 +22,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         cityin = (EditText) findViewById(R.id.actCity);
         areain = (EditText) findViewById(R.id.area);
         seasontext= (TextView) findViewById(R.id.seatext);
+
         final Spinner seasonsp = (Spinner) findViewById(R.id.spsea);
         submitButton = (Button) findViewById(R.id.submitButton);
         final Handler handler = new Handler(Looper.getMainLooper());
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity
                 city = cityin.getText().toString();
                 area = areain.getText().toString();
                 season = seasonsp.getSelectedItem().toString();
+
                 if(city.length()==0)
                 {
                     cityin.requestFocus();
@@ -88,7 +91,11 @@ public class MainActivity extends AppCompatActivity
                     if (listCity.contains(city)) {
                         setContentView(R.layout.show);
                         final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+                        final TextView note= (TextView) findViewById(R.id.note);
+                        String  notetext="Note:\n1)The production graph shown is predicted production of the city: "+city+" in season: "+season+"\n2)We have used Random Forest Regression for better prediction\n3)This prediction is based on historical production and rainfall data\n4)Datasets used are authorized and provided by Ministry of Agriculture and Farmers Welfare, Department of Agriculture, Cooperation and Farmers Welfare and Directorate of Economics and Statistics (DES) available on data.gov.in";
+                        note.setText(notetext);
                         ischange = true;
+
                         url = "http://predictcrop.pythonanywhere.com/plot/?inp=" + city + "@" + season + "@" + area;
                         //Intent intent =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         //startActivity(intent);
